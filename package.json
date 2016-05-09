@@ -1,0 +1,38 @@
+{
+  "name": "cds-validator",
+  "version": "0.1.0",
+  "description": "A \"card validator\" to evaluate CDS payloads.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha && jshint .",
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mattberther/cds-validator.git"
+  },
+  "keywords": [
+    "hl7",
+    "fhir",
+    "json",
+    "validator",
+    "cds-hooks"
+  ],
+  "author": "Matt Berther",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mattberther/cds-validator/issues"
+  },
+  "homepage": "https://github.com/mattberther/cds-validator#readme",
+  "dependencies": {
+    "bluebird": "3.3.5",
+    "jsonschema": "1.1.0"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "chai-as-promised": "5.3.0",
+    "jshint": "2.9.2",
+    "mocha": "2.4.5"
+  }
+}
