@@ -180,7 +180,7 @@ describe('the cds payload', function() {
       });
 
       it('should optionally allow a url', function() {
-        payload.cards[0].source.url = 'https://github.com/mattberther/cds-validator';
+        payload.cards[0].source.url = 'https://github.com/cds-hooks/cds-validator';
 
         return expect(validator(JSON.stringify(payload))).to.eventually.deep.equal(payload);
       });
@@ -218,7 +218,7 @@ describe('the cds payload', function() {
     it('should allow an optional list of links', function() {
       payload.cards[0].links = [{
         label: 'GitHub CDS Validator',
-        url: 'https://github.com/mattberther/cds-validator'
+        url: 'https://github.com/cds-hooks/cds-validator'
       }];
 
       return expect(validator(JSON.stringify(payload))).to.eventually.deep.equal(payload);
@@ -227,7 +227,7 @@ describe('the cds payload', function() {
     describe('links', function() {
       it('should require a label', function() {
         payload.cards[0].links = [{
-          url: 'https://github.com/mattberther/cds-validator'
+          url: 'https://github.com/cds-hooks/cds-validator'
         }];
 
         return expect(validator(JSON.stringify(payload))).to.be.rejected;

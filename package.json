@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:mattberther/cds-validator.git"
+    "url": "git@github.com:cds-hooks/cds-validator.git"
   },
   "keywords": [
     "hl7",
@@ -22,9 +22,9 @@
   "author": "Matt Berther",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mattberther/cds-validator/issues"
+    "url": "https://github.com/cds-hooks/cds-validator/issues"
   },
-  "homepage": "https://github.com/mattberther/cds-validator#readme",
+  "homepage": "https://github.com/cds-hooks/cds-validator#readme",
   "dependencies": {
     "bluebird": "3.3.5",
     "jsonschema": "1.1.0"
