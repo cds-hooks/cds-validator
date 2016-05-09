@@ -1,6 +1,6 @@
 {
   "name": "cds-validator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A card validator to evaluate CDS payloads.",
   "main": "index.js",
   "scripts": {
