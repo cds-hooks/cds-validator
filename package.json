@@ -1,7 +1,7 @@
 {
   "name": "cds-validator",
   "version": "0.1.0",
-  "description": "A \"card validator\" to evaluate CDS payloads.",
+  "description": "A card validator to evaluate CDS payloads.",
   "main": "index.js",
   "scripts": {
     "test": "mocha && jshint .",
