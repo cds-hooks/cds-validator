@@ -3,10 +3,14 @@
 var Promise = require('bluebird');
 var Validator = require('jsonschema').Validator;
 
-function validate(str, schema) {
+function validate(doc, schema) {
   return new Promise(function(resolve, reject) {
     try {
-      var obj = JSON.parse(str);
+      var obj = doc;
+
+      if (typeof doc === 'string' || doc instanceof String) {
+        obj = JSON.parse(doc);
+      }
 
       var v = new Validator();
       v.customFormats.payloadFormat = function(input) {
