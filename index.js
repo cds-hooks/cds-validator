@@ -2,12 +2,11 @@
 
 var Promise = require('bluebird');
 var Validator = require('jsonschema').Validator;
-var schema = require('./lib/schema');
 
-function Card(str) {
+function validate(str, schema) {
   return new Promise(function(resolve, reject) {
     try {
-      var cards = JSON.parse(str);
+      var obj = JSON.parse(str);
 
       var v = new Validator();
       v.customFormats.payloadFormat = function(input) {
@@ -18,10 +17,10 @@ function Card(str) {
         return input.create || input.delete;
       };
 
-      var result = v.validate(cards, schema, { throwError: false });
+      var result = v.validate(obj, schema, { throwError: false });
 
       if (result.valid) {
-        resolve(cards);
+        resolve(obj);
       } else {
         reject(result.errors);
       }
@@ -35,5 +34,7 @@ function Card(str) {
 }
 
 module.exports = {
-  Card: Card
+  Card: function(str) {
+    return validate(str, require('./lib/card-schema'));
+  }
 };
