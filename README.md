@@ -11,8 +11,13 @@ A "card validator" to evaluate CDS payloads.
 ## Usage
 The library takes, as input, a string representing the response from a CDS service. It will return a promise that will either `resolve` to a JSON object (the parsed payload) or `reject` to an array of errors indicating what went wrong.
 
+The module exports validators for [CDS Service Responses (Cards)](http://cds-hooks.github.io/docs/#cds-service-response) and [CDS Discovery Responses](http://cds-hooks.github.io/docs/#discovery).
+
 ```js
+// pick your poison
 var validate = require('cds-validator').Card;
+var validate = require('cds-validator').DiscoveryResponse;
+var validate = require('cds-validator').ServiceRequest;
 
 validate(jsonString).then(function(obj) {
     // do something with the parsed payload
