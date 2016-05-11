@@ -12,7 +12,7 @@ A "card validator" to evaluate CDS payloads.
 The library takes, as input, a string representing the response from a CDS service. It will return a promise that will either `resolve` to a JSON object (the parsed payload) or `reject` to an array of errors indicating what went wrong.
 
 ```js
-var validate = require('cds-validator');
+var validate = require('cds-validator').Card;
 
 validate(jsonString).then(function(obj) {
     // do something with the parsed payload

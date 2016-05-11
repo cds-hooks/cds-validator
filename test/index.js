@@ -6,7 +6,7 @@ var expect = chai.expect;
 var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
-var validator = require('../index');
+var validator = require('../index').Card;
 
 describe('the cds payload', function() {
   var payload;

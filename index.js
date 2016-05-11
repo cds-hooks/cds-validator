@@ -4,7 +4,7 @@ var Promise = require('bluebird');
 var Validator = require('jsonschema').Validator;
 var schema = require('./lib/schema');
 
-module.exports = function(str) {
+function Card(str) {
   return new Promise(function(resolve, reject) {
     try {
       var cards = JSON.parse(str);
@@ -32,4 +32,8 @@ module.exports = function(str) {
         }]);
     }
   });
+}
+
+module.exports = {
+  Card: Card
 };
