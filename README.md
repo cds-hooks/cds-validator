@@ -17,6 +17,7 @@ The module exports validators for [CDS Service Responses (Cards)](http://cds-hoo
 // pick your poison
 var validate = require('cds-validator').Card;
 var validate = require('cds-validator').DiscoveryResponse;
+var validate = require('cds-validator').ServiceRequest;
 
 validate(jsonString).then(function(obj) {
     // do something with the parsed payload

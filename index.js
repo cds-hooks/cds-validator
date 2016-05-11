@@ -43,5 +43,8 @@ module.exports = {
   },
   DiscoveryResponse: function(str) {
     return validate(str, require('./lib/discovery-response-schema'));
+  },
+  ServiceRequest: function(str) {
+    return validate(str, require('./lib/service-request-schema.js'));
   }
 };
