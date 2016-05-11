@@ -36,5 +36,8 @@ function validate(str, schema) {
 module.exports = {
   Card: function(str) {
     return validate(str, require('./lib/card-schema'));
+  },
+  DiscoveryResponse: function(str) {
+    return validate(str, require('./lib/discovery-response-schema'));
   }
 };
