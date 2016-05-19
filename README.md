@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/cds-validator.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/cds-validator/)
 
-[![Circle CI](https://circleci.com/gh/cds-hooks/cds-validator.svg?style=shield)](https://circleci.com/gh/cds-hooks/cds-validator)
+[![Build Status](https://travis-ci.org/cds-hooks/cds-validator.svg?branch=master)](https://travis-ci.org/cds-hooks/cds-validator)
 [![devDependency Status](https://david-dm.org/cds-hooks/cds-validator.svg)](https://david-dm.org/cds-hooks/cds-validator#info=devDependencies)
 
 
