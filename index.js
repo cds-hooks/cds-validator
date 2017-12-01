@@ -5,10 +5,10 @@ var Validator = require('jsonschema').Validator;
 
 function validate(doc, schema, options) {
   return new Promise(function (resolve, reject) {
-    try {
-      options = options || {};
-      options.throwError = false;
+    options = options || {};
+    options.throwError = false;
 
+    try {
       var obj = doc;
 
       if (typeof doc === 'string' || doc instanceof String) {
@@ -17,11 +17,7 @@ function validate(doc, schema, options) {
 
       var v = new Validator();
       v.customFormats.payloadFormat = function (input) {
-        return input.cards || input.decisions;
-      };
-
-      v.customFormats.decisionFormat = function (input) {
-        return input.create || input.delete;
+        return input.cards;
       };
 
       var result = v.validate(obj, schema, options);
@@ -33,9 +29,9 @@ function validate(doc, schema, options) {
       }
     } catch (err) {
       reject([{
-        property: 'instance',
+        property: options.propertyName ? options.propertyName : 'instance',
         message: err.message
-        }]);
+      }]);
     }
   });
 }
