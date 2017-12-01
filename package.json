@@ -27,7 +27,7 @@
   "homepage": "https://github.com/cds-hooks/cds-validator#readme",
   "dependencies": {
     "bluebird": "3.3.5",
-    "jsonschema": "1.1.0"
+    "jsonschema": "1.2.0"
   },
   "devDependencies": {
     "chai": "3.5.0",

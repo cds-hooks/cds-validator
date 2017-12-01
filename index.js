@@ -3,9 +3,12 @@
 var Promise = require('bluebird');
 var Validator = require('jsonschema').Validator;
 
-function validate(doc, schema) {
-  return new Promise(function(resolve, reject) {
+function validate(doc, schema, options) {
+  return new Promise(function (resolve, reject) {
     try {
+      options = options || {};
+      options.throwError = false;
+
       var obj = doc;
 
       if (typeof doc === 'string' || doc instanceof String) {
@@ -13,15 +16,15 @@ function validate(doc, schema) {
       }
 
       var v = new Validator();
-      v.customFormats.payloadFormat = function(input) {
+      v.customFormats.payloadFormat = function (input) {
         return input.cards || input.decisions;
       };
 
-      v.customFormats.decisionFormat = function(input) {
+      v.customFormats.decisionFormat = function (input) {
         return input.create || input.delete;
       };
 
-      var result = v.validate(obj, schema, { throwError: false });
+      var result = v.validate(obj, schema, options);
 
       if (result.valid) {
         resolve(obj);
@@ -30,21 +33,21 @@ function validate(doc, schema) {
       }
     } catch (err) {
       reject([{
-          property: 'instance',
-          message: err.message
+        property: 'instance',
+        message: err.message
         }]);
     }
   });
 }
 
 module.exports = {
-  Card: function(str) {
-    return validate(str, require('./lib/card-schema'));
+  Card: function (str, options) {
+    return validate(str, require('./lib/card-schema'), options);
   },
-  DiscoveryResponse: function(str) {
-    return validate(str, require('./lib/discovery-response-schema'));
+  DiscoveryResponse: function (str, options) {
+    return validate(str, require('./lib/discovery-response-schema'), options);
   },
-  ServiceRequest: function(str) {
-    return validate(str, require('./lib/service-request-schema.js'));
+  ServiceRequest: function (str, options) {
+    return validate(str, require('./lib/service-request-schema.js'), options);
   }
 };
