@@ -44,16 +44,15 @@ describe('the service request', function () {
     payload = {
       hookInstance: 'd1577c69-dfbe-44ad-ba6d-3e05e953b2ea',
       fhirServer: 'http://hooks.smarthealthit.org:9080',
-      hook: 'patient-view',
+      hook: 'https://cds-hooks.org/hooks/1.0/patient-view',
       user: 'Practitioner/example',
       context: {},
-      patient: '1288992',
-      encounter: '1384912',
       fhirAuthorization: {
         access_token: 'some-opaque-fhir-access-token',
         token_type: 'Bearer',
         expires_in: 300,
-        scope: 'patient/Patient.read patient/Observation.read'
+        scope: 'patient/Patient.read patient/Observation.read',
+        subject: 'OAuth2 client identifier'
       },
       prefetch: {
         patientToGreet: {
@@ -84,12 +83,13 @@ describe('the service request', function () {
     return validateRequiredField(payload, 'hook');
   });
 
-  it('should require a hook instance', function () {
-    return validateRequiredField(payload, 'hookInstance');
+  it('should allow a hook to be a regular string', function () {
+    payload.hook = 'patient-view';
+    return expect(validator(payload)).to.be.valid;
   });
 
-  it('should require a fhir server', function () {
-    return validateRequiredField(payload, 'fhirServer');
+  it('should require a hook instance', function () {
+    return validateRequiredField(payload, 'hookInstance');
   });
 
   it('should optionally allow a fhirAuthorization', function () {

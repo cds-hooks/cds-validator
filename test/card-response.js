@@ -16,7 +16,7 @@ describe('the cds payload', function () {
       cards: [{
         summary: '<140-character summary message for display to the user',
         detail: 'optional detailed information to display, represented in Markdown',
-        indicator: 'success',
+        indicator: 'info',
         source: {
           label: 'source of the information on the card'
         },
@@ -62,12 +62,6 @@ describe('the cds payload', function () {
       return expect(validator(payload)).to.be.rejected;
     });
 
-    it('should require detail information', function () {
-      delete payload.cards[0].detail;
-
-      return expect(validator(payload)).to.be.rejected;
-    });
-
     it('should require an indicator', function () {
       delete payload.cards[0].indicator;
 
@@ -75,12 +69,6 @@ describe('the cds payload', function () {
     });
 
     describe('indicator', function () {
-      it('should allow indicator to be success', function () {
-        payload.cards[0].indicator = 'success';
-
-        return expect(validator(payload)).to.eventually.deep.equal(payload);
-      });
-
       it('should allow indicator to be info', function () {
         payload.cards[0].indicator = 'info';
 
@@ -133,6 +121,7 @@ describe('the cds payload', function () {
         actions: [
           {
             type: 'create',
+            description: 'create a new medication order',
             resource: {
               resourceType: 'MedicationOrder',
               id: 'b49f1c4a'
@@ -140,6 +129,7 @@ describe('the cds payload', function () {
           },
           {
             type: 'delete',
+            description: 'delete an existing order',
             resource: {
               resourceType: 'Order',
               id: '3e1d05defe78'
@@ -155,14 +145,6 @@ describe('the cds payload', function () {
       it('should require a label', function () {
         payload.cards[0].suggestions = [{
           uuid: '94b2b626-1584-11e6-a148-3e1d05defe78'
-        }];
-
-        return expect(validator(payload)).to.be.rejected;
-      });
-
-      it('should require a uuid', function () {
-        payload.cards[0].suggestions = [{
-          label: 'Suggestion Label'
         }];
 
         return expect(validator(payload)).to.be.rejected;
@@ -190,12 +172,6 @@ describe('the cds payload', function () {
         delete payload.cards[0].links[0].url;
 
         return expect(validator(payload)).to.be.rejected;
-      });
-
-      it('should not require a type', function () {
-        delete payload.cards[0].links[0].type;
-
-        return expect(validator(payload)).to.eventually.deep.equal(payload);
       });
 
       it('should allow a type to be absolute', function () {

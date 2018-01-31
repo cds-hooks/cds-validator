@@ -14,7 +14,7 @@ describe('the discovery response', function () {
   beforeEach(function () {
     payload = {
       services: [{
-        hook: 'patient-view',
+        hook: 'https://cds-hooks.org/hooks/1.0/patient-view',
         title: 'Static CDS Service Example',
         description: 'An example of a CDS service that returns a static set of cards',
         id: 'static-patient-greeter',
@@ -59,10 +59,9 @@ describe('the discovery response', function () {
         return expect(validator(payload)).to.be.rejected;
       });
 
-      it('should require a title', function () {
-        delete payload.services[0].title;
-
-        return expect(validator(payload)).to.be.rejected;
+      it('should allow a hook to be a regular string', function () {
+        payload.services[0].hook = 'patient-view';
+        return expect(validator(payload)).to.be.valid;
       });
 
       it('should require a description', function () {
