@@ -4,7 +4,7 @@
   "description": "A card validator to evaluate CDS payloads.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha && jshint .",
+    "test": "mocha && eslint .",
     "preversion": "npm test",
     "postversion": "git push && git push --tags && npm publish"
   },
@@ -32,7 +32,8 @@
   "devDependencies": {
     "chai": "3.5.0",
     "chai-as-promised": "5.3.0",
-    "jshint": "2.9.2",
+    "eslint": "^4.16.0",
+    "eslint-config-xo": "^0.19.0",
     "mocha": "2.4.5"
   }
 }
