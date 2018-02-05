@@ -9,9 +9,11 @@
 A "card validator" to evaluate CDS payloads.
 
 ## Usage
-The library takes, as input, a string representing the response from a CDS service. It will return a promise that will either `resolve` to a JSON object (the parsed payload) or `reject` to an array of errors indicating what went wrong.
 
-The module exports validators for [CDS Service Responses (Cards)](http://cds-hooks.github.io/docs/#cds-service-response) and [CDS Discovery Responses](http://cds-hooks.github.io/docs/#discovery).
+The library takes, as input, a string representing the response from a CDS service and optional options to feed the [jsonschema](https://www.npmjs.com/package/jsonschema). It will return a promise that will either `resolve` to a JSON object (the parsed payload) or `reject` to an array of errors indicating what went wrong.
+
+The module exports validators for [CDS Service Responses (Cards)](http://cds-hooks.org/specification/1.0/#cds-service-response) and [CDS Discovery Responses](http://cds-hooks.org/specification/1.0/#response).
+
 
 ```js
 // pick your poison
@@ -19,13 +21,18 @@ var validate = require('cds-validator').Card;
 var validate = require('cds-validator').DiscoveryResponse;
 var validate = require('cds-validator').ServiceRequest;
 
-validate(jsonString).then(function(obj) {
+var options = {
+  propertyName: 'payload'
+}
+validate(jsonString, options).then(function(obj) {
     // do something with the parsed payload
   })
   .catch(function(err) {
-    // an array of errors indicating what went wrong
+    // an array of errors indicating what went wrong,
+    // where failing fields are called 'payload.<field name>' (default is 'instance.<field name>')
   });
 ```
 
 ## Notes
+
 Thank you to [Josh Mandel](https://github.com/jmandel) and [Kevin Shekleton](https://github.com/kpshek) for the cds-hooks project, a JSON-based mechanism for EMR systems to provide decision support tools from within a clinician's workflow.
